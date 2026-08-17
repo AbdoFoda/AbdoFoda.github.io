@@ -67,7 +67,7 @@ function setFormStatus(message, type) {
 form.addEventListener('submit', async e => {
   e.preventDefault();
 
-  if (CONTACT_EMAIL === '__CONTACT_EMAIL__' || CONTACT_EMAIL === 'disabled') {
+  if (!CONTACT_EMAIL.includes('@')) {
     setFormStatus('Contact form is not configured yet.', 'error');
     return;
   }
