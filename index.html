@@ -198,7 +198,7 @@
           <a href="https://www.linkedin.com/in/abd-el-rahman-foda" target="_blank" rel="noopener" class="text-gray-500 hover:text-accent text-xl transition-colors" aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="mailto:abdofoda2016@gmail.com" class="text-gray-500 hover:text-accent text-xl transition-colors" aria-label="Email">
+          <a href="#contact" class="text-gray-500 hover:text-accent text-xl transition-colors" aria-label="Contact">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -591,7 +591,8 @@
         <p class="text-gray-500 mt-4">Have a project, question, or just want to say hi? I'd love to hear from you.</p>
       </div>
 
-      <form id="contact-form" class="space-y-5 reveal" action="https://formspree.io/f/xplaceholder" method="POST">
+      <form id="contact-form" class="space-y-5 reveal" novalidate>
+        <input type="checkbox" name="botcheck" id="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
         <div>
           <label for="name" class="block text-sm text-gray-400 mb-2">Name</label>
           <input type="text" id="name" name="name" required
@@ -615,13 +616,6 @@
         </button>
         <p id="form-status" class="text-center text-sm hidden"></p>
       </form>
-
-      <div class="text-center mt-8 reveal">
-        <p class="text-gray-500 text-sm mb-4">Or reach me directly</p>
-        <a href="mailto:abdofoda2016@gmail.com" class="text-accent hover:text-accent2 font-medium">
-          abdofoda2016@gmail.com
-        </a>
-      </div>
     </div>
   </section>
 
@@ -636,7 +630,7 @@
         <a href="https://www.linkedin.com/in/abd-el-rahman-foda" target="_blank" rel="noopener" class="text-gray-500 hover:text-accent transition-colors">
           <i class="fab fa-linkedin text-lg"></i>
         </a>
-        <a href="mailto:abdofoda2016@gmail.com" class="text-gray-500 hover:text-accent transition-colors">
+        <a href="#contact" class="text-gray-500 hover:text-accent transition-colors" aria-label="Contact">
           <i class="fas fa-envelope text-lg"></i>
         </a>
       </div>

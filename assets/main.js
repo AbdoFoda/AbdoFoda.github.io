@@ -3,7 +3,9 @@ const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('a.nav-link');
 const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'].map(id => document.getElementById(id));
 
-// Mobile menu toggle
+// Injected at deploy time from GitHub secret CONTACT_EMAIL (never committed to the repo)
+const CONTACT_EMAIL = '__CONTACT_EMAIL__';
+
 menuBtn.addEventListener('click', () => {
   mobileMenu.classList.toggle('hidden');
   const icon = menuBtn.querySelector('i');
@@ -20,7 +22,6 @@ mobileMenu.querySelectorAll('a.nav-link').forEach(link => {
   });
 });
 
-// Active nav link on scroll
 function onScroll() {
   const scrollPos = window.scrollY + window.innerHeight / 3;
   let current = 'home';
@@ -39,7 +40,6 @@ function onScroll() {
 window.addEventListener('scroll', onScroll);
 window.addEventListener('load', onScroll);
 
-// Scroll reveal
 const revealObserver = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
@@ -53,22 +53,65 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Contact form — uses mailto fallback until Formspree is configured
 const form = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
+const submitBtn = form.querySelector('button[type="submit"]');
 
-form.addEventListener('submit', e => {
-  const action = form.getAttribute('action');
-  if (action.includes('xplaceholder')) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
-    window.location.href = `mailto:abdofoda2016@gmail.com?subject=${subject}&body=${body}`;
-    formStatus.textContent = 'Opening your email client...';
-    formStatus.className = 'text-center text-sm text-accent';
-    formStatus.classList.remove('hidden');
+function setFormStatus(message, type) {
+  formStatus.textContent = message;
+  formStatus.className = 'text-center text-sm mt-2';
+  formStatus.classList.add(type === 'error' ? 'text-red-400' : 'text-accent');
+  formStatus.classList.remove('hidden');
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+
+  if (CONTACT_EMAIL === '__CONTACT_EMAIL__' || CONTACT_EMAIL === 'disabled') {
+    setFormStatus('Contact form is not configured yet.', 'error');
+    return;
+  }
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const botcheck = document.getElementById('botcheck');
+
+  if (botcheck.checked) return;
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+  formStatus.classList.add('hidden');
+
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _subject: `Portfolio message from ${name}`,
+        _template: 'table',
+        _captcha: 'false',
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || 'Failed to send message');
+    }
+
+    form.reset();
+    setFormStatus('Message sent! I\'ll get back to you soon.', 'success');
+  } catch (err) {
+    setFormStatus('Something went wrong. Please try again in a moment.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
   }
 });
