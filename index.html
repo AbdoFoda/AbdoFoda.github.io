@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abdelrahman Sobbhy — Senior iOS Engineer based in Berlin. SwiftUI, UIKit, Swift Concurrency, and App Store releases." />
+  <meta name="author" content="Abdelrahman Sobbhy" />
+  <meta property="og:title" content="Abdelrahman Sobbhy — Senior iOS Engineer" />
+  <meta property="og:description" content="Senior iOS Engineer building native apps that ship." />
+  <meta property="og:type" content="website" />
+  <title>Abdelrahman Sobbhy — Senior iOS Engineer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: '#0a0f1a',
+            card: '#111827',
+            accent: '#10b981',
+            accent2: '#06b6d4',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    .nav-link {
+      position: relative;
+      color: #9ca3af;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      bottom: -4px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-link:hover, .nav-link:focus, .nav-link.active {
+      color: #10b981;
+      outline: none;
+    }
+    .nav-link:hover::after, .nav-link:focus::after, .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-glow {
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(16,185,129,0.15), transparent);
+    }
+
+    .float-animation {
+      animation: floatUpDown 5s ease-in-out infinite;
+    }
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -12px rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    .skill-pill {
+      transition: all 0.25s ease;
+    }
+    .skill-pill:hover {
+      transform: translateY(-3px);
+      border-color: rgba(16, 185, 129, 0.5);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-gray-100 antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-lg border-b border-gray-800/50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="text-xl font-bold gradient-text">AbdoFoda</a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="nav-link active" data-link="home">Home</a>
+        <a href="#about" class="nav-link" data-link="about">About</a>
+        <a href="#projects" class="nav-link" data-link="projects">Projects</a>
+        <a href="#skills" class="nav-link" data-link="skills">Skills</a>
+        <a href="#contact" class="nav-link" data-link="contact">Contact</a>
+      </div>
+
+      <button id="menu-btn" class="md:hidden text-gray-300 hover:text-accent text-xl" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800/50 bg-surface/95 backdrop-blur-lg">
+      <div class="flex flex-col px-6 py-4 gap-4">
+        <a href="#home" class="nav-link" data-link="home">Home</a>
+        <a href="#about" class="nav-link" data-link="about">About</a>
+        <a href="#projects" class="nav-link" data-link="projects">Projects</a>
+        <a href="#skills" class="nav-link" data-link="skills">Skills</a>
+        <a href="#contact" class="nav-link" data-link="contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="min-h-screen flex items-center hero-glow grid-bg pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <p class="text-accent font-mono text-sm mb-4 tracking-wider uppercase">Hello, World 👋</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+          Hi, I'm<br />
+          <span class="gradient-text">Abdelrahman</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-400 mb-2">
+          A <span class="text-white font-semibold">Senior iOS Engineer</span>
+        </p>
+        <p class="text-gray-500 mb-8 max-w-lg">
+          Building native iOS apps from Berlin — SwiftUI, UIKit, and App Store releases. 9+ years shipping real products.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#projects" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold inline-flex items-center gap-2">
+            <i class="fas fa-rocket"></i> View Projects
+          </a>
+          <a href="#contact" class="border border-gray-700 hover:border-accent text-gray-300 hover:text-accent px-6 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2">
+            <i class="fas fa-envelope"></i> Contact Me
+          </a>
+        </div>
+        <div class="flex gap-5 mt-10">
+          <a href="https://github.com/AbdoFoda" target="_blank" rel="noopener" class="text-gray-500 hover:text-accent text-xl transition-colors" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:abdofoda@stud.fci-cu.edu.eg" class="text-gray-500 hover:text-accent text-xl transition-colors" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center reveal">
+        <div class="relative float-animation">
+          <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent2/20 rounded-full blur-3xl"></div>
+          <img
+            src="https://avatars.githubusercontent.com/u/22549762?v=4"
+            alt="Abdelrahman Sobbhy"
+            class="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-accent/30 shadow-2xl object-cover"
+          />
+          <div class="absolute -bottom-2 -right-2 bg-card border border-gray-700 rounded-xl px-4 py-2 shadow-lg">
+            <span class="text-accent font-mono text-sm">Berlin, DE 🇩🇪</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 bg-card/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent2 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+        <div class="space-y-4 text-gray-400 leading-relaxed">
+          <p>
+            I'm <strong class="text-white">Abdelrahman Sobbhy</strong> — a Senior iOS Engineer based in Berlin, with a Computer Science background from Cairo University's Faculty of Computers & Information.
+          </p>
+          <p>
+            I've been building for iOS since 2016 — from UIKit and CocoaPods to modern <strong class="text-accent">SwiftUI</strong> and <strong class="text-accent">Swift Concurrency</strong>. I care about architecture, performance, and shipping apps people actually use.
+          </p>
+          <p>
+            Beyond iOS, I have full-stack and cross-platform experience (Flutter, Java, backend) — but native Apple platforms are where I do my best work.
+          </p>
+          <blockquote class="border-l-4 border-accent pl-4 italic text-gray-500 font-mono text-sm">
+            "it works, and I will touch it."
+          </blockquote>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-card border border-gray-800 rounded-xl p-6 text-center card-hover">
+            <div class="text-3xl font-bold gradient-text">36+</div>
+            <div class="text-gray-500 text-sm mt-1">Public Repos</div>
+          </div>
+          <div class="bg-card border border-gray-800 rounded-xl p-6 text-center card-hover">
+            <div class="text-3xl font-bold gradient-text">9+</div>
+            <div class="text-gray-500 text-sm mt-1">Years Coding</div>
+          </div>
+          <div class="bg-card border border-gray-800 rounded-xl p-6 text-center card-hover">
+            <div class="text-3xl font-bold gradient-text">13</div>
+            <div class="text-gray-500 text-sm mt-1">Swift Projects</div>
+          </div>
+          <div class="bg-card border border-gray-800 rounded-xl p-6 text-center card-hover">
+            <div class="text-3xl font-bold gradient-text">App Store</div>
+            <div class="text-gray-500 text-sm mt-1">Releases</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent2 mx-auto rounded-full"></div>
+        <p class="text-gray-500 mt-4">Selected iOS work from my GitHub.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-film text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">CineScroll</h3>
+          </div>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            Native iOS cinema browser powered by TMDB. Offline-first, Swift Concurrency, zero third-party app dependencies. iOS 18+.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">SwiftUI</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift Concurrency</span>
+          </div>
+          <a href="https://github.com/AbdoFoda/CineScroll" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </article>
+
+        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-images text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">SwiftyGalleryView</h3>
+          </div>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            Published CocoaPod for scrollable image gallery stacks in iOS apps. Used UIKit with a clean, reusable API.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">CocoaPods</span>
+          </div>
+          <a href="https://github.com/AbdoFoda/SwiftyGalleryView" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </article>
+
+        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-network-wired text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">AlamofireXMLRPC</h3>
+          </div>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            XML-RPC networking layer built on Alamofire — a Swift library for structured API communication in iOS apps.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Alamofire</span>
+          </div>
+          <a href="https://github.com/AbdoFoda/AlamofireXMLRPC" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </article>
+
+        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-cube text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">AR Object Sorting</h3>
+          </div>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            An ARKit experiment — sort and arrange virtual objects in 3D space using augmented reality on iOS.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">ARKit</span>
+          </div>
+          <a href="https://github.com/AbdoFoda/ARObjectSorting" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </article>
+
+        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-globe text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">This Website</h3>
+          </div>
+          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+            My personal portfolio — responsive, dark-themed, built with HTML, Tailwind CSS, and vanilla JavaScript. Open source.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">HTML</span>
+            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Tailwind</span>
+          </div>
+          <a href="https://github.com/AbdoFoda/AbdoFoda.github.io" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 bg-card/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Skills & <span class="gradient-text">Tools</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent2 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 reveal">
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fab fa-swift text-orange-400"></i> Swift
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-mobile-alt text-blue-400"></i> SwiftUI
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fab fa-apple text-gray-300"></i> UIKit
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-bolt text-yellow-400"></i> Swift Concurrency
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-cube text-purple-400"></i> ARKit
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-box text-red-400"></i> CocoaPods
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-network-wired text-blue-400"></i> Combine
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fas fa-fire text-orange-400"></i> Firebase
+        </span>
+        <span class="skill-pill border border-accent/30 rounded-full px-5 py-2.5 text-sm text-gray-200 flex items-center gap-2">
+          <i class="fab fa-github text-gray-300"></i> Git
+        </span>
+      </div>
+
+      <p class="text-center text-gray-600 text-sm mt-8 reveal">Also experienced with Flutter, Java, Python, and backend development</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent2 mx-auto rounded-full"></div>
+        <p class="text-gray-500 mt-4">Have a project, question, or just want to say hi? I'd love to hear from you.</p>
+      </div>
+
+      <form id="contact-form" class="space-y-5 reveal" action="https://formspree.io/f/xplaceholder" method="POST">
+        <div>
+          <label for="name" class="block text-sm text-gray-400 mb-2">Name</label>
+          <input type="text" id="name" name="name" required
+            class="w-full bg-card border border-gray-700 rounded-lg px-4 py-3 text-gray-100 focus:outline-none focus:border-accent transition-colors"
+            placeholder="Your name" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm text-gray-400 mb-2">Email</label>
+          <input type="email" id="email" name="email" required
+            class="w-full bg-card border border-gray-700 rounded-lg px-4 py-3 text-gray-100 focus:outline-none focus:border-accent transition-colors"
+            placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="message" class="block text-sm text-gray-400 mb-2">Message</label>
+          <textarea id="message" name="message" rows="5" required
+            class="w-full bg-card border border-gray-700 rounded-lg px-4 py-3 text-gray-100 focus:outline-none focus:border-accent transition-colors resize-none"
+            placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full text-white py-3 rounded-lg font-semibold inline-flex items-center justify-center gap-2">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+        <p id="form-status" class="text-center text-sm hidden"></p>
+      </form>
+
+      <div class="text-center mt-8 reveal">
+        <p class="text-gray-500 text-sm mb-4">Or reach me directly</p>
+        <a href="mailto:abdofoda@stud.fci-cu.edu.eg" class="text-accent hover:text-accent2 font-medium">
+          abdofoda@stud.fci-cu.edu.eg
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-gray-500 text-sm">&copy; 2026 Abdelrahman Sobbhy. Built with real experience.</p>
+      <div class="flex gap-5">
+        <a href="https://github.com/AbdoFoda" target="_blank" rel="noopener" class="text-gray-500 hover:text-accent transition-colors">
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a href="mailto:abdofoda@stud.fci-cu.edu.eg" class="text-gray-500 hover:text-accent transition-colors">
+          <i class="fas fa-envelope text-lg"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
