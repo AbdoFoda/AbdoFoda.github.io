@@ -29,9 +29,9 @@ jobs:
         run: |
           if [ -z "$CONTACT_EMAIL" ]; then
             echo "::warning::CONTACT_EMAIL secret is not set. Contact form will be disabled."
-            sed -i 's/__CONTACT_EMAIL__/disabled/g' assets/main.js
+            sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = 'disabled'/" assets/main.js
           else
-            sed -i "s/__CONTACT_EMAIL__/$CONTACT_EMAIL/g" assets/main.js
+            sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = '${CONTACT_EMAIL}'/" assets/main.js
           fi
 
       - uses: actions/configure-pages@v4
