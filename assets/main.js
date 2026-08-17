@@ -1,7 +1,7 @@
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('a.nav-link');
-const sections = ['home', 'about', 'projects', 'skills', 'contact'].map(id => document.getElementById(id));
+const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'].map(id => document.getElementById(id));
 
 // Mobile menu toggle
 menuBtn.addEventListener('click', () => {
@@ -66,7 +66,7 @@ form.addEventListener('submit', e => {
     const message = document.getElementById('message').value;
     const subject = encodeURIComponent(`Portfolio contact from ${name}`);
     const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
-    window.location.href = `mailto:abdofoda@stud.fci-cu.edu.eg?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:abdofoda2016@gmail.com?subject=${subject}&body=${body}`;
     formStatus.textContent = 'Opening your email client...';
     formStatus.className = 'text-center text-sm text-accent';
     formStatus.classList.remove('hidden');
