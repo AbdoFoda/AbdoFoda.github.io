@@ -3,7 +3,6 @@ const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelectorAll('a.nav-link');
 const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'].map(id => document.getElementById(id));
 
-// Injected at deploy time from GitHub secret CONTACT_EMAIL (never committed to the repo)
 const CONTACT_EMAIL = '__CONTACT_EMAIL__';
 
 menuBtn.addEventListener('click', () => {
@@ -68,7 +67,7 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
 
   if (!CONTACT_EMAIL.includes('@')) {
-    setFormStatus('Contact form is not configured yet.', 'error');
+    setFormStatus('Contact form is not set up.', 'error');
     return;
   }
 
@@ -107,11 +106,11 @@ form.addEventListener('submit', async e => {
     }
 
     form.reset();
-    setFormStatus('Message sent! I\'ll get back to you soon.', 'success');
+    setFormStatus('Sent.', 'success');
   } catch (err) {
-    setFormStatus('Something went wrong. Please try again in a moment.', 'error');
+    setFormStatus('Failed to send. Try again.', 'error');
   } finally {
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    submitBtn.textContent = 'Send';
   }
 });

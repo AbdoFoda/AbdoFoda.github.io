@@ -1,26 +1,29 @@
-# AbdoFoda.github.io
+# abdofoda.github.io
 
-Personal portfolio website for [Abdelrahman Sobbhy](https://github.com/AbdoFoda).
+Personal site for [Abdelrahman Fouda](https://github.com/AbdoFoda).
 
-Live at: **https://abdofoda.github.io**
+**Live:** https://abdofoda.github.io
 
-## Deploy
+## Stack
 
-1. Create a public repo named `AbdoFoda.github.io` on GitHub
-2. Push this folder's contents to the `main` branch
-3. GitHub Pages activates automatically — no build step needed
-
-## Contact form (optional)
-
-The form uses a `mailto:` fallback by default. For a working submit button:
-
-1. Sign up at [formspree.io](https://formspree.io)
-2. Replace `xplaceholder` in `index.html` with your Formspree form ID
+Static HTML, Tailwind CSS (CDN), vanilla JS. Deployed with GitHub Actions to GitHub Pages.
 
 ## Local preview
 
 ```bash
-cd AbdoFoda.github.io
 python3 -m http.server 8080
-# open http://localhost:8080
 ```
+
+Open http://localhost:8080. The contact form needs a deploy with the `CONTACT_EMAIL` secret to work locally.
+
+## Contact form
+
+Submissions go through [Formsubmit](https://formsubmit.co). The recipient address is stored as a repo secret and injected at deploy time — it is not committed to the repo.
+
+1. Add secret `CONTACT_EMAIL` in repo settings (Settings → Secrets → Actions)
+2. Push to `main` — the workflow in `.github/workflows/deploy-pages.yml` handles the rest
+3. On first real submission, Formsubmit sends an activation email — click the link once
+
+## Deploy
+
+Pushes to `main` trigger the GitHub Actions workflow. Pages source must be set to **GitHub Actions** (already configured for this repo).
