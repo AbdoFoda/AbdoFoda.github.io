@@ -27,11 +27,20 @@ jobs:
         env:
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
         run: |
+          targets="assets/main.js prayer-director/contact.js"
           if [ -z "$CONTACT_EMAIL" ]; then
-            echo "::warning::CONTACT_EMAIL secret is not set. Contact form will be disabled."
-            sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = 'disabled'/" assets/main.js
+            echo "::warning::CONTACT_EMAIL secret is not set. Contact forms will be disabled."
+            for f in $targets; do
+              if [ -f "$f" ]; then
+                sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = 'disabled'/" "$f"
+              fi
+            done
           else
-            sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = '${CONTACT_EMAIL}'/" assets/main.js
+            for f in $targets; do
+              if [ -f "$f" ]; then
+                sed -i "s/const CONTACT_EMAIL = '__CONTACT_EMAIL__'/const CONTACT_EMAIL = '${CONTACT_EMAIL}'/" "$f"
+              fi
+            done
           fi
 
       - uses: actions/configure-pages@v4

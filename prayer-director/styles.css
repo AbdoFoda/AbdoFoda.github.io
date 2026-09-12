@@ -164,3 +164,78 @@ footer {
 .accent {
   color: var(--aligned);
 }
+
+.support-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.support-form label {
+  margin-top: 0.55rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.support-form label:first-of-type {
+  margin-top: 0;
+}
+
+.support-form input,
+.support-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: rgba(7, 20, 15, 0.65);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.support-form input:focus,
+.support-form textarea:focus {
+  outline: 1px solid var(--gold);
+  border-color: var(--gold);
+}
+
+.support-form textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.form-submit {
+  margin-top: 1rem;
+  justify-self: start;
+  cursor: pointer;
+  appearance: none;
+  background: var(--gold-soft);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-status {
+  margin: 0.75rem 0 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.9rem;
+}
+
+.form-status.is-success {
+  color: var(--aligned);
+}
+
+.form-status.is-error {
+  color: #e8a0a0;
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}

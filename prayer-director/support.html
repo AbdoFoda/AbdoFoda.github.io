@@ -21,14 +21,24 @@
     <h1>Support</h1>
     <p>
       We’re happy to help with permissions, compass calibration, or anything else about Prayer Director.
+      Send a message below and it will reach us privately.
     </p>
 
-    <div class="panel">
-      <p style="margin:0">
-        <strong>Email</strong><br />
-        <a href="mailto:abdofoda2016@gmail.com">abdofoda2016@gmail.com</a>
-      </p>
-    </div>
+    <form id="support-form" class="panel support-form" novalidate>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" autocomplete="name" required />
+
+      <label for="email">Your email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <input id="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+
+      <button type="submit" class="cta form-submit">Send message</button>
+      <p id="form-status" class="form-status" hidden></p>
+    </form>
 
     <h2>Common tips</h2>
     <ul>
@@ -45,5 +55,6 @@
       © 2026 Abdulrahman Foda · Prayer Director
     </footer>
   </main>
+  <script src="contact.js"></script>
 </body>
 </html>
