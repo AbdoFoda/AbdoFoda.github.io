@@ -19,24 +19,30 @@
     </nav>
 
     <h1>Support</h1>
-    <p>
-      We’re happy to help with permissions, compass calibration, or anything else about Prayer Director.
-      Send a message below and it will reach us privately.
+    <p class="lede">
+      Questions about permissions, calibration, or anything else — send a private message and we’ll get back to you.
     </p>
 
-    <form id="support-form" class="panel support-form" novalidate>
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" autocomplete="name" required />
+    <form id="support-form" class="support-form" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+        </div>
+      </div>
 
-      <label for="email">Your email</label>
-      <input id="email" name="email" type="email" autocomplete="email" required />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="How can we help?" required></textarea>
+      </div>
 
       <input id="botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
 
-      <button type="submit" class="cta form-submit">Send message</button>
+      <button type="submit" class="form-submit">Send message</button>
       <p id="form-status" class="form-status" hidden></p>
     </form>
 

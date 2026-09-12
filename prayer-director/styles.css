@@ -165,64 +165,127 @@ footer {
   color: var(--aligned);
 }
 
+.lede {
+  margin: 0 0 1.75rem;
+  max-width: 34rem;
+}
+
 .support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.field-row {
   display: grid;
-  gap: 0.55rem;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
 }
 
-.support-form label {
-  margin-top: 0.55rem;
+@media (min-width: 560px) {
+  .field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field label {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(212, 175, 55, 0.85);
 }
 
-.support-form label:first-of-type {
-  margin-top: 0;
-}
-
-.support-form input,
-.support-form textarea {
+.field input,
+.field textarea {
   width: 100%;
-  padding: 0.7rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 0;
-  background: rgba(7, 20, 15, 0.65);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(15, 36, 25, 0.9), rgba(10, 25, 18, 0.75));
   color: var(--ink);
-  font: inherit;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.support-form input:focus,
-.support-form textarea:focus {
-  outline: 1px solid var(--gold);
-  border-color: var(--gold);
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(168, 181, 170, 0.55);
 }
 
-.support-form textarea {
+.field input:hover,
+.field textarea:hover {
+  border-color: rgba(212, 175, 55, 0.38);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.7);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.14);
+  background: rgba(12, 30, 22, 0.95);
+}
+
+.field textarea {
   resize: vertical;
-  min-height: 7rem;
+  min-height: 9rem;
 }
 
 .form-submit {
-  margin-top: 1rem;
-  justify-self: start;
+  margin-top: 0.35rem;
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(212, 175, 55, 0.28), rgba(212, 175, 55, 0.12));
+  color: #f6e7b2;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   appearance: none;
-  background: var(--gold-soft);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.form-submit:hover {
+  background:
+    linear-gradient(180deg, rgba(212, 175, 55, 0.42), rgba(212, 175, 55, 0.18));
+  border-color: var(--gold);
+  color: #fff6d4;
+}
+
+.form-submit:active {
+  transform: translateY(1px);
 }
 
 .form-submit:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: wait;
+  transform: none;
 }
 
 .form-status {
-  margin: 0.75rem 0 0;
+  margin: 0;
+  text-align: center;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .form-status.is-success {
