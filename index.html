@@ -268,7 +268,7 @@
             Most recently I co-founded Olincart, where I build the mobile app businesses use to sell online and lead iOS-specific platform development. Before that: Yassir, Amazon, Zalando, Equity Bank and Orange.
           </p>
           <p>
-            Side projects on GitHub include a UIKit weather app and a SwiftUI cinema browser.
+            On my own time I build AI Light Studio, a Mac app where a team of AI agents works on your code in a 3D office, plus a UIKit weather app and a SwiftUI cinema browser.
           </p>
         </div>
 
@@ -448,10 +448,50 @@
       <div class="text-center mb-16 reveal">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
         <div class="w-20 h-1 bg-gradient-to-r from-accent to-accent2 mx-auto rounded-full"></div>
-        <p class="text-gray-500 mt-4">Open-source iOS projects.</p>
+        <p class="text-gray-500 mt-4">Apps I build on my own time.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <article class="bg-card featured-card rounded-2xl p-6 card-hover reveal mb-6">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <i class="fas fa-users-gear text-accent"></i>
+            </div>
+            <h3 class="text-lg font-bold">AI Light Studio</h3>
+          </div>
+          <span class="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full">New · macOS</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div class="project-preview" style="margin-bottom:0">
+            <img
+              src="https://ailightstudio.abdofoda.workers.dev/img/office-overview.webp"
+              alt="AI Light Studio: the 3D office with AI employees at their desks"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+              A team of AI employees that works on your repository, in a 3D office you can watch. Each employee is a Claude Code agent with its own role: they pick tickets from a shared board, hold meetings, review each other's work and open draft pull requests.
+            </p>
+            <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+              Native SwiftUI Mac app with the office rendered in RealityKit, a Swift engine running agents and their tools, on-device voices through CoreML, and speech recognition to talk to the team.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">SwiftUI</span>
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">RealityKit</span>
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift Concurrency</span>
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">CoreML</span>
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">AI Agents</span>
+              <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">TypeScript</span>
+            </div>
+            <a href="https://ailightstudio.abdofoda.workers.dev" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
+              Visit the website <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <div class="grid md:grid-cols-2 gap-6">
 
         <article class="bg-card featured-card rounded-2xl p-6 card-hover reveal">
           <div class="flex items-center justify-between gap-3 mb-4">
@@ -509,67 +549,6 @@
             <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift Concurrency</span>
           </div>
           <a href="https://github.com/AbdoFoda/CineScroll" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
-            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
-          </a>
-        </article>
-
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-              <i class="fas fa-images text-accent"></i>
-            </div>
-            <h3 class="text-lg font-bold">SwiftyGalleryView</h3>
-          </div>
-          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-            CocoaPod for scrollable image galleries in UIKit apps.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">CocoaPods</span>
-          </div>
-          <a href="https://github.com/AbdoFoda/SwiftyGalleryView" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
-            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
-          </a>
-        </article>
-
-        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-              <i class="fas fa-network-wired text-accent"></i>
-            </div>
-            <h3 class="text-lg font-bold">AlamofireXMLRPC</h3>
-          </div>
-          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-            XML-RPC layer on top of Alamofire.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Alamofire</span>
-          </div>
-          <a href="https://github.com/AbdoFoda/AlamofireXMLRPC" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
-            View on GitHub <i class="fas fa-arrow-right text-xs"></i>
-          </a>
-        </article>
-
-        <article class="bg-card border border-gray-800 rounded-2xl p-6 card-hover reveal">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-              <i class="fas fa-cube text-accent"></i>
-            </div>
-            <h3 class="text-lg font-bold">AR Object Sorting</h3>
-          </div>
-          <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-            ARKit demo: sort objects in 3D space.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Swift</span>
-            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">ARKit</span>
-          </div>
-          <a href="https://github.com/AbdoFoda/ARObjectSorting" target="_blank" rel="noopener" class="text-accent hover:text-accent2 text-sm font-medium inline-flex items-center gap-1">
             View on GitHub <i class="fas fa-arrow-right text-xs"></i>
           </a>
         </article>
